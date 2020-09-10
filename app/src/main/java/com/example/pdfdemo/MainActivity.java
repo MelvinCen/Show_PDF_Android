@@ -28,18 +28,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         webView = findViewById(R.id.webView);
-
-        file = new File(getDownloadPath(), "test.pdf");
-
-        if (!file.exists()) {
-            Toast.makeText(this,"文件不存在",Toast.LENGTH_LONG).show();
-        }
-
+        //初始设置webview
         initWebView();
 
+        //调试PDF文件放在内部存储中
+//        file = new File(getDownloadPath(), "test.pdf");
+//        if (!file.exists()) {
+//            Toast.makeText(this,"文件不存在",Toast.LENGTH_LONG).show();
+//        }
 
-//        webView.loadUrl("https://www.baidu.com");
-
+        //Android6.0申请动态权限
         RxPermissions rxPermissions = new RxPermissions(this);
         @NonNull Disposable disposable = rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe(new Consumer<Boolean>() {
@@ -47,11 +45,18 @@ public class MainActivity extends AppCompatActivity {
                     public void accept(Boolean success) throws Throwable {
                         if (success) {
                             //1.只使用pdf.js渲染功能，自定义预览UI界面
-//                            webView.loadUrl("file:///android_asset/index.html?" + FileProviderUtils.getUriForFile(MainActivity.this, file));
-                            //2.pdf.js放到本地
-//                            webView.loadUrl("file:///android_asset/pdfjs/web/viewer.html?file=" + file.getAbsolutePath());
-                            //使用mozilla官方demo加载在线pdf
-//                            webView.loadUrl("http://mozilla.github.io/pdf.js/web/viewer.html?file=" + pdfurl);
+                            //调试PDF文件放在内部存储中
+                            //webView.loadUrl("file:///android_asset/index.html?" + FileProviderUtils.getUriForFile(MainActivity.this, file));
+
+                            //1.只使用pdf.js渲染功能，自定义预览UI界面
+                            //调试PDF文件放在项目中
+                            webView.loadUrl("file:///android_asset/index.html?" + "file:///android_asset/test.pdf");
+
+                            //2.pdf.js放到本地,PDF文件先下载到本地后再显示
+                            //webView.loadUrl("file:///android_asset/pdfjs/web/viewer.html?file=" + file.getAbsolutePath());
+
+                            //3.使用mozilla官方demo加载在线pdf,有跨域问题
+                            //webView.loadUrl("http://mozilla.github.io/pdf.js/web/viewer.html?file=" + pdfurl);
                         } else {
                             Toast.makeText(MainActivity.this,"没有权限",Toast.LENGTH_LONG).show();
                         }
