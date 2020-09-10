@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         webView = findViewById(R.id.webView);
 
-//        file = new File(getDownloadPath(), "test.pdf");
-        file = new File(getDownloadPath(), "易前台v1.1操作手册.pdf");
+        file = new File(getDownloadPath(), "test.pdf");
+
         if (!file.exists()) {
             Toast.makeText(this,"文件不存在",Toast.LENGTH_LONG).show();
         }
