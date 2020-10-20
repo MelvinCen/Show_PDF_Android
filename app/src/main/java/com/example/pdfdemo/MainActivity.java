@@ -50,9 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
                             //1.只使用pdf.js渲染功能，自定义预览UI界面
                             //调试PDF文件放在项目中
-                            webView.loadUrl("file:///android_asset/index.html?" + "file:///android_asset/test.pdf");
+//                            webView.loadUrl("file:///android_asset/index.html?" + "file:///android_asset/test.pdf");
+//                            webView.loadUrl("file:///android_asset/index.html?" + "https://www.ibm.com/support/knowledgecenter/zh/ssw_ibm_i_72/rzati/rzati.pdf?view=kc");
 
                             //2.pdf.js放到本地,PDF文件先下载到本地后再显示
+                            webView.loadUrl("file:///android_asset/pdfjs/web/viewer.html?file=" + "https://www.ibm.com/support/knowledgecenter/zh/ssw_ibm_i_72/rzati/rzati.pdf?view=kc");
                             //webView.loadUrl("file:///android_asset/pdfjs/web/viewer.html?file=" + file.getAbsolutePath());
 
                             //3.使用mozilla官方demo加载在线pdf,有跨域问题

@@ -50,7 +50,6 @@ public class NativeApiActivity extends AppCompatActivity {
                     }
                 });
 
-
     }
 
     private void openPdf() {
